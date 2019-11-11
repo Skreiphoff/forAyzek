@@ -29,7 +29,7 @@ public:
 		cout << "Введите наименование товара: ";
 		cin >> name;
 		cout << "Введите цену товара: ";
-		cin >> amount;
+		cin >> price;
 		cout << "Введите количество товара: ";
 		cin >> amount;
 	}
@@ -40,7 +40,7 @@ protected:
 	double src = 0;
 };
 
-void avgPrice(product value[]);
+void avgPrice(product value[], int N);
 
 int main()
 {
@@ -61,18 +61,22 @@ int main()
 	{
 		value[i].Input();
 	}
-
-	avgPrice(value);
-
 	/*for (int i = 0; i < N; i++)
 	{
 		value[i].Show();
 	}*/
+
+	avgPrice(value, N);
+
 	system("pause");
 	return 0;
 };
 
-void avgPrice(product value[])
+void avgPrice(product value[], int N)
 {
-	asdarwefsdfwe
+	double temp = 0;
+	for (int i = 0; i < N; i++) {
+		temp = value[i].price / value[i].amount;
+		cout << endl << value[i].name << " имеет цену за единицу " << temp << endl;
+	}
 }
