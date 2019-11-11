@@ -74,5 +74,5 @@ int main()
 
 void avgPrice(product value[])
 {
-
+	asdarwefsdfwe
 }
