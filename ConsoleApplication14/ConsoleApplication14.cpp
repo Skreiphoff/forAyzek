@@ -74,9 +74,10 @@ int main()
 
 void avgPrice(product value[], int N)
 {
-	double temp = 0;
 	for (int i = 0; i < N; i++) {
+		double temp = 0;
 		temp = value[i].price / value[i].amount;
 		cout << endl << value[i].name << " имеет цену за единицу " << temp << endl;
 	}
+
 }
