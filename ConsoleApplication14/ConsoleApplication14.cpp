@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string> 
 #include <Windows.h>
+#include <fstream>
 using namespace std;
 
 
@@ -41,6 +42,7 @@ protected:
 };
 
 void avgPrice(product value[], int N);
+void writeInFile(product value[], double temp1, double temp2, int N);
 
 int main()
 {
@@ -61,10 +63,7 @@ int main()
 	{
 		value[i].Input();
 	}
-	/*for (int i = 0; i < N; i++)
-	{
-		value[i].Show();
-	}*/
+
 
 	avgPrice(value, N);
 
@@ -74,10 +73,36 @@ int main()
 
 void avgPrice(product value[], int N)
 {
+	double temp1 = 0;
 	for (int i = 0; i < N; i++) {
-		double temp = 0;
-		temp = value[i].price / value[i].amount;
-		cout << endl << value[i].name << " имеет цену за единицу " << temp << endl;
+		
+		temp1 = value[i].price / value[i].amount;
+		cout << endl << value[i].name << " имеет цену за единицу " << temp1 << endl;
 	}
 
+	double temp2 = 0;
+
+	for (int i = 0; i < N; i++)
+	{
+		double temp = 0, temp1 = 0;
+		temp += value[i].price;
+		temp1 += value[i].amount;
+		temp2 = temp / temp1;
+	}
+
+	writeInFile(value, temp1, temp2, N);
+	cout << "Общяя сумма СВЦ = " << temp2 << "\n";
+
+}
+
+void writeInFile(product value[], double temp1, double temp2, int N) {
+	ofstream out("Text.txt", ios::app);
+	if (out.is_open())
+	{
+		for (int i = 0; i < N; i++) {
+			out << "Товар: " << value[i].name << endl << "Цена: " << value[i].price << endl << "Количество: " << value[i].amount << endl << "Имеет цену за единицу: " << temp1 << endl << "Общяя сумма СВЦ: " << temp2 << endl << "========================" << endl;
+		}
+	}
+
+	out.close();
 }
